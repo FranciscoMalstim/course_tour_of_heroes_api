@@ -1,5 +1,8 @@
-class Api:: HeroesController < ApplicationController
+class Api::HeroesController < ApplicationController
+include Authenticable
+  
   before_action :set_hero, only: %i[ show update destroy ]
+  before_action :authenticable_with_token, expect: %i[ index show ]  
 
   # GET /heroes
   def index
